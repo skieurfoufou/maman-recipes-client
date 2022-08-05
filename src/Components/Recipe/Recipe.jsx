@@ -3,6 +3,7 @@ import classes from "./Recipe.module.css";
 import { useSearchParams } from "react-router-dom";
 import RecipeDetails from "../RecipeDetails/RecipeDetails";
 import * as recipesApi from "../../Apis/recipes.api";
+import Spinner from "../Spinner/Spinner";
 
 function RecipePage() {
   const [searchParams] = useSearchParams();
@@ -27,7 +28,7 @@ function RecipePage() {
 
   return (
     <div className={classes.container}>
-      <RecipeDetails recipe={recipe} />
+      {isLoading ? <Spinner /> : <RecipeDetails recipe={recipe} />}
     </div>
   );
 }

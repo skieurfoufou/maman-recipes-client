@@ -31,7 +31,7 @@
   .title {
     background-color: var(--third-color);
     width: 40vh;
-    height: 10vh;
+    min-height: 10vh;
     border-radius: 0px 0px 20px 20px;
     padding-top: 20px;
     margin-top: 0px;

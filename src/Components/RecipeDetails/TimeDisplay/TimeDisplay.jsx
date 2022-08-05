@@ -16,7 +16,7 @@ function TimeDisplay({
       {cookingTime && <TimeBadge timeText={cookingTime} mode="cook" />}
 
       {grades && <Stars grades={grades} />}
-      <NumberOfPersons numberOfPersons={numberOfPersons} />
+      {numberOfPersons && <NumberOfPersons numberOfPersons={numberOfPersons} />}
     </div>
   );
 }

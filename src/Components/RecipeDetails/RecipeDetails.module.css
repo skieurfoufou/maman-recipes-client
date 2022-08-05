@@ -37,7 +37,7 @@
 @media (min-width: 1000px) {
   .container {
     background-color: var(--primary-color);
-    height: 85vh;
+    min-height: 85vh;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -45,7 +45,7 @@
   }
   .subContainer {
     background-color: var(--primary-color);
-    height: 80vh;
+    min-height: 80vh;
     min-width: 70vw;
     display: flex;
     flex-direction: column;

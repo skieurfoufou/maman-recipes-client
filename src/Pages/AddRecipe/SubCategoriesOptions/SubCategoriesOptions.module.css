@@ -1,0 +1,11 @@
+.label {
+  font-weight: bold;
+}
+
+.input {
+  border-radius: 15px;
+  height: 4.5vh;
+  flex-grow: 2;
+  padding: 10px;
+  font-size: large;
+}

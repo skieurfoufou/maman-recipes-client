@@ -1,0 +1,24 @@
+.header_link {
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+
+.header_link:hover {
+  color: var(--fourth-color);
+  border-bottom: 2px solid var(--fourth-color);
+}
+
+.header_link:active {
+  color: var(--fourth-color);
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.title_navBar {
+}
+
+.title_navbar_active {
+  text-decoration: underline;
+  color: white;
+  font-weight: bold;
+}

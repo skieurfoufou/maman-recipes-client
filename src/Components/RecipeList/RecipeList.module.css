@@ -1,0 +1,18 @@
+.recipeList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.title {
+  padding: 10px;
+  margin: 10px;
+  border: 3px solid var(--fifth-color);
+  border-radius: 15px;
+  height: 4.5vh;
+  width: fit-content;
+  background-color: var(--third-color);
+  color: var(--font-color-2);
+  font-weight: bold;
+}

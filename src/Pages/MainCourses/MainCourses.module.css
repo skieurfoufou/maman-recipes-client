@@ -1,0 +1,15 @@
+/* .container {
+  background-color: var(--primary-color);
+  height: 85vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+} */
+
+.slider_container {
+  font-family: Open sans, sans-serif;
+  height: 85vh;
+  background: var(--primary-color);
+  overflow: hidden;
+}

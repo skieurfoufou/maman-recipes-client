@@ -1,0 +1,8 @@
+.container {
+  background-image: linear-gradient(var(--primary-color), var(--fifth-color));
+  height: 85vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}

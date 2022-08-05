@@ -1,0 +1,20 @@
+.cooking {
+  min-height: 4.5vh;
+  width: 40vw;
+  border: 2px solid var(--fifth-color);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: large;
+  color: var(--font-color-2);
+  padding: 10px;
+}
+
+.logo_cooking {
+  height: 4vh;
+  pointer-events: none;
+  fill: var(--secondary-color);
+  padding-right: 10px;
+}

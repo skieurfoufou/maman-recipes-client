@@ -1,0 +1,49 @@
+.container {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 4px 18px 5px rgba(0, 0, 0, 0.17);
+  position: absolute;
+  width: 30%;
+  left: 35%;
+  top: 25%;
+  z-index: 100;
+}
+@media (max-width: 1000px) {
+  .container {
+    width: 70%;
+    left: 15%;
+  }
+}
+
+.header {
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: row;
+  padding: 0 25px;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  height: 10vh;
+  color: var(--font-color-2);
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+.children {
+  background-color: var(--third-color);
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  min-height: 40vh;
+  /* overflow-y: scroll; */
+  font-size: large;
+}
+
+.buttonClose {
+  /* margin: 15px; */
+}
+
+.buttonIcon {
+  color: var(--font-color2);
+  cursor: pointer;
+}

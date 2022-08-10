@@ -4,14 +4,22 @@ import classes from "./LabelInput.module.css";
 /**
  * cssStyle - should be `thin` or `wide`
  */
-function LabelInput({ register, name, input, cssStyle }) {
+function LabelInput({ register, name, input, cssStyle, defaultValue }) {
   return (
     <>
       <label className={classes.label}>{name}</label>
       {cssStyle === "thin" ? (
-        <input className={classes.input} {...register(input)} />
+        <input
+          className={classes.input}
+          defaultValue={defaultValue}
+          {...register(input)}
+        />
       ) : (
-        <textarea className={classes.inputWide} {...register(input)}></textarea>
+        <textarea
+          className={classes.inputWide}
+          defaultValue={defaultValue}
+          {...register(input)}
+        ></textarea>
       )}
     </>
   );

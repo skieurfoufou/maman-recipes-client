@@ -1,31 +1,10 @@
 import React from "react";
 import classes from "./Header.module.css";
-// import logo from "../../logo.svg";
 import { useLocation } from "react-router-dom";
 import NavItem from "../NavItem/NavItem";
 import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
-
-// const routes = [
-//   { link: "/Breads", title: "Pains", key: 2 },
-//   { link: "/Entries", title: "Entrees", key: 3 },
-//   { link: "/MainCourses", title: "Plats Principaux", key: 4 },
-//   { link: "/Desserts", title: "Desserts", key: 5 },
-// ];
-
-// function NavItem({ route, pathname }) {
-//   return (
-//     <Link to={route.link} className={classes.header_link}>
-//       <h4
-//         className={`${classes.title_navBar} ${
-//           pathname === route.link ? classes.title_navbar_active : ""
-//         }`}
-//       >
-//         {route.title}
-//       </h4>
-//     </Link>
-//   );
-// }
+import SearchBar from "./SearchBar/SearchBar";
 
 function Header({ categories }) {
   const { isLoggedIn } = useContext(AuthContext);
@@ -34,7 +13,6 @@ function Header({ categories }) {
   return (
     <div className={classes.container}>
       <div className={classes.navBar}>
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <NavItem route={{ link: "/", title: "Home" }} pathname={pathname} />
         {categories.map((category) => {
           return (
@@ -56,10 +34,29 @@ function Header({ categories }) {
             pathname={pathname}
           />
         )}
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
       </div>
-      <div className={classes.title}>
-        <h4>Les Recettes de Maman Sabine</h4>
+      <div className={classes.subContainer}>
+        <div className={classes.title}>
+          <h4>Les Recettes de Maman Sabine</h4>
+        </div>
+        <SearchBar />
+        {/* <div className={classes.searchContainer}>
+          <img
+            src={search}
+            className="logo_search"
+            alt="logo"
+            height="45"
+            width="45"
+          />
+          <input
+            placeholder="search"
+            className={classes.search}
+            onChange={(e) => {
+              setValue(e.target.value);
+              console.log(value);
+            }}
+          ></input>
+        </div> */}
       </div>
     </div>
   );

@@ -4,12 +4,14 @@ import jwt_decode from "jwt-decode";
 
 const initialState = { token: "" };
 
+//TODO: station 1 - add CLEAR_TOKEN
 const AuthActions = { SET_TOKEN: "LOGIN", LOAD_TOKEN: "INIT" };
 
 const LOCAL_STORAGE_TOKEN = "token";
 
 function reducer(state, action) {
   switch (action.type) {
+    //TODO: station 2 - create case
     case AuthActions.SET_TOKEN:
       try {
         const { token } = action;
@@ -51,6 +53,7 @@ function reducer(state, action) {
 export function useAuth() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  //TODO: station 3 - create a function that call the reducer with dispatch
   const loginAction = async (email, password) => {
     try {
       const res = await loginApi({
@@ -67,6 +70,7 @@ export function useAuth() {
     }
   };
 
+  //TODO: station 4 - export
   return {
     token: state.token,
     isLoggedIn: !!state.token,

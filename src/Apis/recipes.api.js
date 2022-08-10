@@ -32,11 +32,12 @@ export const getOneRecipe = async (id) => {
   }
 };
 
-export const updateRecipe = async () => {
+export const updateRecipe = async (recipe, token) => {
   try {
     const url = `${env.SERVER_URL}/recipes`;
     console.log(url);
-    const res = await axios.put(url);
+    const headers = createHeaders({ token });
+    const res = await axios.put(url, recipe, { headers });
     return res.data;
   } catch (err) {
     console.error(err);
@@ -47,14 +48,29 @@ export const updateRecipe = async () => {
 export const createRecipe = async (newRecipe, token) => {
   try {
     const url = `${env.SERVER_URL}/recipes`;
-    const res = await axios.post(url, newRecipe, {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
+    const headers = createHeaders({ token });
+    const res = await axios.post(url, newRecipe, { headers });
     return res.data;
   } catch (err) {
     console.error(err);
     throw new Error(err.message);
   }
+};
+
+export const deleteRecipe = async (id, token) => {
+  try {
+    const url = `${env.SERVER_URL}/recipes/${id}`;
+    const headers = createHeaders({ token });
+    const res = await axios.delete(url, { headers });
+    return res.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+const createHeaders = ({ token }) => {
+  return {
+    Authorization: "Bearer " + token,
+  };
 };

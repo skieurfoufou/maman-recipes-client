@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Recipe.module.css";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import RecipeDetails from "../RecipeDetails/RecipeDetails";
 import * as recipesApi from "../../Apis/recipes.api";
 import Spinner from "../Spinner/Spinner";
 
 function RecipePage() {
   const [searchParams] = useSearchParams();
+  const [isError, setIsError] = useState(false);
   const [recipe, setRecipe] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   const loadRecipeData = async (id) => {
     setIsLoading(true);
-    const response = await recipesApi.getOneRecipe(id);
-    setRecipe(response);
+    try {
+      const response = await recipesApi.getOneRecipe(id);
+      setRecipe(response);
+    } catch (error) {
+      setIsError(true);
+    }
     setIsLoading(false);
   };
 
@@ -26,7 +31,13 @@ function RecipePage() {
     loadRecipeData(id);
   }, [searchParams]);
 
-  return (
+  //TODO: create an error component
+  return isError ? (
+    <div>
+      <p> Sorry, this page have an error</p>
+      <Link to={"/"}>Go to Home</Link>
+    </div>
+  ) : (
     <div className={classes.container}>
       {isLoading ? <Spinner /> : <RecipeDetails recipe={recipe} />}
     </div>

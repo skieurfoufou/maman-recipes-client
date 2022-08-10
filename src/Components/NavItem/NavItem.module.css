@@ -8,17 +8,8 @@
   border-bottom: 2px solid var(--fourth-color);
 }
 
-.header_link:active {
-  color: var(--fourth-color);
+.active_link {
+  color: var(--font-color);
   text-decoration: underline;
-  font-weight: bold;
-}
-
-.title_navBar {
-}
-
-.title_navbar_active {
-  text-decoration: underline;
-  color: white;
   font-weight: bold;
 }

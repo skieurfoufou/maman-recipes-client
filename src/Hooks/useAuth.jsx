@@ -4,14 +4,22 @@ import jwt_decode from "jwt-decode";
 
 const initialState = { token: "" };
 
-//TODO: station 1 - add CLEAR_TOKEN
-const AuthActions = { SET_TOKEN: "LOGIN", LOAD_TOKEN: "INIT" };
+const AuthActions = {
+  SET_TOKEN: "LOGIN",
+  LOAD_TOKEN: "INIT",
+  CLEAR_TOKEN: "CLEAR",
+};
 
 const LOCAL_STORAGE_TOKEN = "token";
 
 function reducer(state, action) {
+  const clearToken = () => {
+    console.log("token expired -- remove from storage");
+    localStorage.removeItem(LOCAL_STORAGE_TOKEN);
+    return { token: "" };
+  };
+
   switch (action.type) {
-    //TODO: station 2 - create case
     case AuthActions.SET_TOKEN:
       try {
         const { token } = action;
@@ -36,14 +44,13 @@ function reducer(state, action) {
       const isTokenExpired = decoded.exp * 1000 < Date.now();
 
       if (isTokenExpired) {
-        console.log("token expired -- remove from storage");
-        localStorage.removeItem(LOCAL_STORAGE_TOKEN);
-        return { token: "" };
+        return clearToken();
       }
-
       console.log("token is valid");
-
       return { token: tokenFromStorage };
+
+    case AuthActions.CLEAR_TOKEN:
+      return clearToken();
 
     default:
       throw new Error();
@@ -53,7 +60,6 @@ function reducer(state, action) {
 export function useAuth() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  //TODO: station 3 - create a function that call the reducer with dispatch
   const loginAction = async (email, password) => {
     try {
       const res = await loginApi({
@@ -70,11 +76,11 @@ export function useAuth() {
     }
   };
 
-  //TODO: station 4 - export
   return {
     token: state.token,
     isLoggedIn: !!state.token,
     login: loginAction,
     init: () => dispatch({ type: AuthActions.LOAD_TOKEN }),
+    clear: () => dispatch({ type: AuthActions.CLEAR_TOKEN }),
   };
 }

@@ -51,7 +51,7 @@ function SubCategoriesOptions({ register, category, defaultValue }) {
       <label className={classes.label}>Sous-Categorie</label>
       <select
         className={classes.input}
-        defaultValue={defaultValue.subCategory}
+        defaultValue={defaultValue}
         {...register("subCategory", {
           required: "Sous-Categorie Obligatoire",
           disabled: category === "",

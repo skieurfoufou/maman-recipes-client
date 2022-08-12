@@ -32,9 +32,9 @@ export const getOneRecipe = async (id) => {
   }
 };
 
-export const updateRecipe = async (recipe, token) => {
+export const updateRecipe = async (id, recipe, token) => {
   try {
-    const url = `${env.SERVER_URL}/recipes`;
+    const url = `${env.SERVER_URL}/recipes/${id}`;
     console.log(url);
     const headers = createHeaders({ token });
     const res = await axios.put(url, recipe, { headers });

@@ -8,7 +8,7 @@ function ProductPage({ subCategory, title }) {
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const loadRecipeData = async () => {
+  const loadAllRecipes = async () => {
     setIsLoading(true);
     try {
       const response = await recipesApi.getAllRecipes({ subCategory });
@@ -23,7 +23,7 @@ function ProductPage({ subCategory, title }) {
   };
 
   useEffect(() => {
-    loadRecipeData();
+    loadAllRecipes();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

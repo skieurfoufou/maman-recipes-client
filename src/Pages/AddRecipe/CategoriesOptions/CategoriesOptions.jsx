@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import classes from "./CategoriesOptions.module.css";
 import SubCategoriesOptions from "../SubCategoriesOptions/SubCategoriesOptions";
 
-function CategoriesOptions({ register, defaultValue }) {
-  console.log(defaultValue.category);
-  const [activeCategory, setActiveCategory] = useState("");
+function CategoriesOptions({
+  register,
+  categoryDefaultValue,
+  subCategoryDefaultValue,
+}) {
+  const [activeCategory, setActiveCategory] = useState(categoryDefaultValue);
 
   const onCategoryChange = (e) => {
     setActiveCategory(e.target.value);
@@ -15,7 +18,7 @@ function CategoriesOptions({ register, defaultValue }) {
       <label className={classes.label}>Categorie</label>
       <select
         className={classes.input}
-        defaultValue={defaultValue.category}
+        defaultValue={categoryDefaultValue}
         {...register("category", {
           required: "Categorie Obligatoire",
           onChange: onCategoryChange,
@@ -30,7 +33,7 @@ function CategoriesOptions({ register, defaultValue }) {
       <SubCategoriesOptions
         category={activeCategory}
         register={register}
-        defaultValue={defaultValue}
+        defaultValue={subCategoryDefaultValue}
       />
     </>
   );

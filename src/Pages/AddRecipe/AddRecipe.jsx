@@ -6,14 +6,16 @@ import LabelInput from "./LabelInput/LabelInput";
 import { createRecipe, updateRecipe } from "../../Apis/recipes.api";
 import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
-import ConfirmButton from "../../Components/ConfirmButton/ConfirmButton";
 import { useEffect } from "react";
-import * as recipesApi from "../../Apis/recipes.api";
+import { useRecipeById } from "../../Hooks/useRecipeById";
+import Spinner from "../../Components/Spinner/Spinner";
 
 function AddRecipe({ isEditMode }) {
-  const { isLoggedIn, token } = useContext(AuthContext);
+  const { loadRecipeById, isError, error, recipe, setRecipe, isLoading } =
+    useRecipeById();
+
+  const { isLoggedIn, token, clear } = useContext(AuthContext);
   const [editId, setEditId] = useState("");
-  const [recipe, setRecipe] = useState({});
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -24,44 +26,36 @@ function AddRecipe({ isEditMode }) {
     reset,
   } = useForm();
 
-  const loadRecipeData = async (id) => {
-    // setIsLoading(true);
-    try {
-      const response = await recipesApi.getOneRecipe(id);
-      setRecipe(response);
-    } catch (error) {
-      // setIsError(true);
-    }
-    // setIsLoading(false);
-  };
-
   useEffect(() => {
     reset();
     setRecipe({});
     const idToEdit = searchParams.get("id");
     setEditId(idToEdit);
-    //TODO: get the recipe from the database and put it in the fields (useState)
-    if (idToEdit) loadRecipeData(idToEdit);
+    if (idToEdit) loadRecipeById(idToEdit);
   }, [searchParams]);
 
   const onSubmit = async (newRecipe) => {
-    //TODO: call updtaeRecipe of we are in edit mode else call create
     if (!editId) {
       await createRecipe(newRecipe, token);
       console.log(`votre recette a ete cree:`, newRecipe);
     } else {
-      await updateRecipe(editId, newRecipe, token);
-      console.log(`votre recette a ete mis a jour:`, newRecipe);
+      try {
+        await updateRecipe(editId, newRecipe, token);
+        console.log(`votre recette a ete mis a jour:`, newRecipe);
+      } catch (error) {
+        //HACK - not the best solution
+        if (error.message === "Request failed with status code 403") clear();
+        return;
+      }
     }
 
-    navigate(`../${newRecipe.category}/${newRecipe.subCategory}`);
-    //TODO: create a popup that say that your recipe has been created,
-    // when click on the "OK" of the popup you need to clear the form
+    navigate(`../Recipe?id=${editId}`);
     reset();
   };
 
   if (!isLoggedIn) return <Navigate to="/login" replace />;
-
+  if (isError) return <div>Error: {error}</div>;
+  if (isLoading) return <Spinner />;
   return (
     <>
       <div className={classes.container}>
@@ -78,7 +72,11 @@ function AddRecipe({ isEditMode }) {
                 {...register("title", { required: "Titre Obligatoire" })}
               />
               <p className={classes.para}>{errors.title?.message}</p>
-              <CategoriesOptions register={register} defaultValue={recipe} />
+              <CategoriesOptions
+                register={register}
+                categoryDefaultValue={recipe.category}
+                subCategoryDefaultValue={recipe.subCategory}
+              />
             </div>
             <div className={classes.title}>
               <LabelInput
@@ -176,15 +174,9 @@ function AddRecipe({ isEditMode }) {
               />
             </div>
           </div>
-          {/* <input type="submit" className={classes.submit} /> */}
-          <ConfirmButton
-            className={classes.submit}
-            type="submit"
-            onConfirm={() => {}}
-            buttonText={"Soumettre"}
-            title={"vous avez creer une recette"}
-            confirmText={"OK"}
-          ></ConfirmButton>
+          <button type="submit" className={classes.submit}>
+            Soumettre
+          </button>
         </form>
       </div>
     </>

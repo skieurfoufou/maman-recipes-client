@@ -1,11 +1,14 @@
 import axios from "axios";
 import env from "../config/env";
 
-export const getAllRecipes = async ({ subCategory, name }) => {
+export const getAllRecipes = async ({ subCategory, q }) => {
   try {
     const parameters = [];
     if (subCategory) {
       parameters.push(`subCategory=${subCategory}`);
+    }
+    if (q) {
+      parameters.push(`q=${q}`);
     }
 
     const url = `${env.SERVER_URL}/recipes${

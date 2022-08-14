@@ -132,7 +132,7 @@ const catalog = {
         },
         {
           id: "203",
-          name: "Les Poulets",
+          name: "Les Volailles",
           link: "Chickens",
           image: {
             link: "https://images.unsplash.com/photo-1574672280600-4accfa5b6f98?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nzl8fGNoaWNrZW58ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=50",

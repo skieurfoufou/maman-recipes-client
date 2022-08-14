@@ -35,18 +35,18 @@ function AddRecipe({ isEditMode }) {
   }, [searchParams]);
 
   const onSubmit = async (newRecipe) => {
-    if (!editId) {
-      await createRecipe(newRecipe, token);
-      console.log(`votre recette a ete cree:`, newRecipe);
-    } else {
-      try {
+    try {
+      if (!editId) {
+        await createRecipe(newRecipe, token);
+        console.log(`votre recette a ete cree:`, newRecipe);
+      } else {
         await updateRecipe(editId, newRecipe, token);
         console.log(`votre recette a ete mis a jour:`, newRecipe);
-      } catch (error) {
-        //HACK - not the best solution
-        if (error.message === "Request failed with status code 403") clear();
-        return;
       }
+    } catch (error) {
+      //HACK - not the best solution
+      if (error.message === "Request failed with status code 403") clear();
+      return;
     }
 
     navigate(`../Recipe?id=${editId}`);

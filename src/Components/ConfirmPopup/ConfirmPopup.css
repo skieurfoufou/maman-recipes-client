@@ -19,6 +19,9 @@
   background-color: var(--fifth-color);
   cursor: pointer;
 }
+.confirmPopup-button-yes {
+  color: red;
+}
 
 .confirmPopup-button-yes:hover {
   background-color: var(--fifth-color);

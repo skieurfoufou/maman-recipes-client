@@ -12,7 +12,7 @@ function SearchResults({ recipes, onClose, isLoading }) {
       ) : (
         <>
           <div className={classes.header}>
-            nous avons trouve {recipes.length} recette/s>
+            nous avons trouve {recipes.length} recette/s
             <img
               src={close}
               className={classes.buttonIcon}

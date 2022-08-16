@@ -49,6 +49,9 @@ function SubCategoriesOptions({ register, category, defaultValue, errors }) {
   return (
     <>
       <label className={classes.label}>Sous-Categorie</label>
+      <div>
+        <p className={classes.para}>{errors.subCategory?.message}</p>
+      </div>
       <select
         className={classes.input}
         defaultValue={defaultValue || ""}
@@ -60,7 +63,6 @@ function SubCategoriesOptions({ register, category, defaultValue, errors }) {
         <option value=""></option>
         {getSubCategory()}
       </select>
-      <p className={classes.para}>{errors.subCategory?.message}</p>
     </>
   );
 }

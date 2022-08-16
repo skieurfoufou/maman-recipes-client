@@ -39,6 +39,7 @@ function RecipeDetails({ recipe }) {
           preparationTime={recipe.preparationTime}
           cookingTime={recipe.cookingTime}
           grades={recipe.grades}
+          numberOfPersons={recipe.numberOfPersons}
         />
         <Ingredients ingredients={recipe.ingredients} />
         <Preparation preparation={recipe.preparation} />

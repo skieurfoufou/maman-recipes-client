@@ -17,6 +17,9 @@ function CategoriesOptions({
   return (
     <>
       <label className={classes.label}>Categorie</label>
+      <div>
+        <div className={classes.para}>{errors.category?.message}</div>
+      </div>
       <select
         className={classes.input}
         defaultValue={categoryDefaultValue}
@@ -31,7 +34,7 @@ function CategoriesOptions({
         <option value="MainCourses">Plats Principaux</option>
         <option value="Desserts">Desserts</option>
       </select>
-      <p className={classes.para}>{errors.category?.message}</p>
+
       <SubCategoriesOptions
         category={activeCategory}
         register={register}

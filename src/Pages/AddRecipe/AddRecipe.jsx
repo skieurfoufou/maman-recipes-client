@@ -74,12 +74,15 @@ function AddRecipe() {
           <div className={classes.container2}>
             <div className={classes.title}>
               <label className={classes.label}>Titre de la Recette</label>
+              <div>
+                <div className={classes.para}>{errors.title?.message}</div>
+              </div>
               <input
                 className={classes.input}
                 defaultValue={recipe.title}
                 {...register("title", { required: "Titre Obligatoire" })}
               />
-              <p className={classes.para}>{errors.title?.message}</p>
+
               <CategoriesOptions
                 register={register}
                 categoryDefaultValue={recipe.category}
@@ -87,6 +90,7 @@ function AddRecipe() {
                 errors={errors}
               />
             </div>
+
             <div className={classes.title}>
               <LabelInput
                 register={register}
@@ -165,10 +169,12 @@ function AddRecipe() {
                 className={classes.input}
                 placeholder="notes de 1 a 5"
                 defaultValue={recipe.grades}
-                {...register("grades", { min: 1, max: 5 })}
+                {...register("grades", {
+                  min: { value: 1, message: "minimum:1" },
+                  max: { value: 5, message: "maximum:5" },
+                })}
               />
-              {errors.grades && <p>{errors.grades.message}</p>}
-              {/* <p className={classes.para}>{errors.grades?.message}</p> */}
+
               <LabelInput
                 register={register}
                 name="Lien Exterieur"
@@ -184,6 +190,9 @@ function AddRecipe() {
                 defaultValue={recipe.linkToPhoto}
               />
             </div>
+          </div>
+          <div>
+            <div className={classes.para}>{errors.grades?.message}</div>
           </div>
           <button type="submit" className={classes.submit}>
             Soumettre

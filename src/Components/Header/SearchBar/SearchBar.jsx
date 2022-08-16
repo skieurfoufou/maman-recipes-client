@@ -3,9 +3,7 @@ import classes from "./SearchBar.module.css";
 import search from "./search_icon.png";
 import { useState } from "react";
 import * as recipesApi from "../../../Apis/recipes.api";
-
 import SearchResults from "./SearchResults/SearchResults";
-import Spinner from "../../Spinner/Spinner";
 
 function SearchBar() {
   const [searchValue, setSearchValue] = useState("");

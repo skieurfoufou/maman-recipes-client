@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./SubCategoriesOptions.module.css";
 
-function SubCategoriesOptions({ register, category, defaultValue }) {
+function SubCategoriesOptions({ register, category, defaultValue, errors }) {
   const getSubCategory = () => {
     switch (category) {
       case "Breads":
@@ -51,14 +51,16 @@ function SubCategoriesOptions({ register, category, defaultValue }) {
       <label className={classes.label}>Sous-Categorie</label>
       <select
         className={classes.input}
-        defaultValue={defaultValue}
+        defaultValue={defaultValue || ""}
         {...register("subCategory", {
           required: "Sous-Categorie Obligatoire",
           disabled: category === "",
         })}
       >
+        <option value=""></option>
         {getSubCategory()}
       </select>
+      <p className={classes.para}>{errors.subCategory?.message}</p>
     </>
   );
 }

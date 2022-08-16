@@ -6,6 +6,7 @@ function CategoriesOptions({
   register,
   categoryDefaultValue,
   subCategoryDefaultValue,
+  errors,
 }) {
   const [activeCategory, setActiveCategory] = useState(categoryDefaultValue);
 
@@ -30,10 +31,12 @@ function CategoriesOptions({
         <option value="MainCourses">Plats Principaux</option>
         <option value="Desserts">Desserts</option>
       </select>
+      <p className={classes.para}>{errors.category?.message}</p>
       <SubCategoriesOptions
         category={activeCategory}
         register={register}
         defaultValue={subCategoryDefaultValue}
+        errors={errors}
       />
     </>
   );

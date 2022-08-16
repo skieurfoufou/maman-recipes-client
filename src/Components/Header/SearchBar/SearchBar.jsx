@@ -5,21 +5,27 @@ import { useState } from "react";
 import * as recipesApi from "../../../Apis/recipes.api";
 
 import SearchResults from "./SearchResults/SearchResults";
+import Spinner from "../../Spinner/Spinner";
 
 function SearchBar() {
   const [searchValue, setSearchValue] = useState("");
   const [timeoutId, setTimeoutId] = useState(null);
   const [recipes, setRecipes] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const searchRecipes = async (query) => {
-    console.log(query);
-    const response = await recipesApi.getAllRecipes({ q: query });
-    setRecipes(response);
+    try {
+      const response = await recipesApi.getAllRecipes({ q: query });
+      setRecipes(response);
+    } catch (error) {}
+
+    setIsLoading(false);
   };
 
   useEffect(() => {
     if (searchValue === "") return;
+    setIsLoading(true);
 
     clearTimeout(timeoutId);
     const id = setTimeout(() => {
@@ -29,9 +35,10 @@ function SearchBar() {
     setIsOpen(true);
   }, [searchValue]);
 
-  const closePopup = () => {
+  const resetState = () => {
     setIsOpen(false);
     setSearchValue("");
+    setRecipes([]);
   };
 
   return (
@@ -46,9 +53,16 @@ function SearchBar() {
       <input
         placeholder="search"
         className={classes.search}
+        value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
       ></input>
-      {isOpen && <SearchResults recipes={recipes} onClose={closePopup} />}
+      {isOpen && (
+        <SearchResults
+          isLoading={isLoading}
+          recipes={recipes}
+          onClose={resetState}
+        />
+      )}
     </div>
   );
 }

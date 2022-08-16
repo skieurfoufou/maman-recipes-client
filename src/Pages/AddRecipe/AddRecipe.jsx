@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { useRecipeById } from "../../Hooks/useRecipeById";
 import Spinner from "../../Components/Spinner/Spinner";
 
-function AddRecipe({ isEditMode }) {
+function AddRecipe() {
   const { loadRecipeById, isError, error, recipe, setRecipe, isLoading } =
     useRecipeById();
 
@@ -35,21 +35,29 @@ function AddRecipe({ isEditMode }) {
   }, [searchParams]);
 
   const onSubmit = async (newRecipe) => {
+    let redirectId;
+    console.log("hey ho im here");
     try {
       if (!editId) {
-        await createRecipe(newRecipe, token);
-        console.log(`votre recette a ete cree:`, newRecipe);
+        const createRecipeRes = await createRecipe(newRecipe, token);
+        redirectId = createRecipeRes._id;
       } else {
         await updateRecipe(editId, newRecipe, token);
-        console.log(`votre recette a ete mis a jour:`, newRecipe);
+        redirectId = editId;
       }
     } catch (error) {
       //HACK - not the best solution
+      console.error(error);
       if (error.message === "Request failed with status code 403") clear();
       return;
     }
 
-    navigate(`../Recipe?id=${editId}`);
+    if (!redirectId) {
+      console.error("no redirectId, something failed");
+      return;
+    }
+
+    navigate(`../Recipe?id=${redirectId}`);
     reset();
   };
 
@@ -76,6 +84,7 @@ function AddRecipe({ isEditMode }) {
                 register={register}
                 categoryDefaultValue={recipe.category}
                 subCategoryDefaultValue={recipe.subCategory}
+                errors={errors}
               />
             </div>
             <div className={classes.title}>
@@ -158,6 +167,8 @@ function AddRecipe({ isEditMode }) {
                 defaultValue={recipe.grades}
                 {...register("grades", { min: 1, max: 5 })}
               />
+              {errors.grades && <p>{errors.grades.message}</p>}
+              {/* <p className={classes.para}>{errors.grades?.message}</p> */}
               <LabelInput
                 register={register}
                 name="Lien Exterieur"

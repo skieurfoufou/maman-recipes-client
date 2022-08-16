@@ -33,9 +33,9 @@
   background-color: var(--third-color);
   display: flex;
   flex-direction: column;
-  align-content: stretch;
-  min-height: 40vh;
-  /* overflow-y: scroll; */
+  justify-content: center;
+  align-content: center;
+  min-height: 30vh;
   font-size: large;
 }
 

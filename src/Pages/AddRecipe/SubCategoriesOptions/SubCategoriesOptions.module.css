@@ -1,5 +1,6 @@
 .label {
   font-weight: bold;
+  color: var(--fifth-color);
 }
 
 .input {
@@ -8,4 +9,9 @@
   flex-grow: 2;
   padding: 10px;
   font-size: large;
+}
+
+.para {
+  color: red;
+  font-size: medium;
 }

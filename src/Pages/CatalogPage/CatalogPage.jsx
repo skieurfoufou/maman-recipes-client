@@ -1,5 +1,4 @@
 import React from "react";
-import Slider from "../../Components/Slider/Slider";
 import Layout3 from "../../Components/Layout3/Layout3";
 import Layout4 from "../../Components/Layout4/Layout4";
 import Superposition from "../../Components/Superposition/Superposition";
@@ -9,8 +8,6 @@ function CatalogPage({ layout, content }) {
     switch (layout) {
       case "Layout3":
         return <Layout3 content={content} />;
-      case "Slider":
-        return <Slider content={content} />;
       case "Superposition":
         return <Superposition content={content} />;
       case "Layout4":

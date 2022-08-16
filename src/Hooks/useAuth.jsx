@@ -4,11 +4,21 @@ import jwt_decode from "jwt-decode";
 
 const initialState = { token: "" };
 
-const AuthActions = { SET_TOKEN: "LOGIN", LOAD_TOKEN: "INIT" };
+const AuthActions = {
+  SET_TOKEN: "LOGIN",
+  LOAD_TOKEN: "INIT",
+  CLEAR_TOKEN: "CLEAR",
+};
 
 const LOCAL_STORAGE_TOKEN = "token";
 
 function reducer(state, action) {
+  const clearToken = () => {
+    console.log("token expired -- remove from storage");
+    localStorage.removeItem(LOCAL_STORAGE_TOKEN);
+    return { token: "" };
+  };
+
   switch (action.type) {
     case AuthActions.SET_TOKEN:
       try {
@@ -34,14 +44,13 @@ function reducer(state, action) {
       const isTokenExpired = decoded.exp * 1000 < Date.now();
 
       if (isTokenExpired) {
-        console.log("token expired -- remove from storage");
-        localStorage.removeItem(LOCAL_STORAGE_TOKEN);
-        return { token: "" };
+        return clearToken();
       }
-
       console.log("token is valid");
-
       return { token: tokenFromStorage };
+
+    case AuthActions.CLEAR_TOKEN:
+      return clearToken();
 
     default:
       throw new Error();
@@ -72,5 +81,6 @@ export function useAuth() {
     isLoggedIn: !!state.token,
     login: loginAction,
     init: () => dispatch({ type: AuthActions.LOAD_TOKEN }),
+    clear: () => dispatch({ type: AuthActions.CLEAR_TOKEN }),
   };
 }

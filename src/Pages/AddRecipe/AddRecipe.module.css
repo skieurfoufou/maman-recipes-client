@@ -23,6 +23,12 @@
 }
 .label {
   font-weight: bold;
+  color: var(--fifth-color);
+}
+
+.para {
+  color: red;
+  font-size: medium;
 }
 
 .input {

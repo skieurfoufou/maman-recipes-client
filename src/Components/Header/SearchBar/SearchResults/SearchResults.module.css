@@ -1,0 +1,49 @@
+.container {
+  position: absolute;
+  height: 20vh;
+  width: 30vw;
+  top: 13vh;
+  right: 10vw;
+  background-color: var(--fourth-color);
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+}
+
+.header {
+  border-bottom: 3px solid black;
+  color: var(--fifth-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.link {
+  color: var(--secondary-color);
+}
+
+.link:hover {
+  color: var(--fifth-color);
+}
+
+.buttonIcon {
+  width: 40px;
+  height: 40px;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1000px) {
+  .container {
+    position: absolute;
+    height: 30vh;
+    width: 100vw;
+    top: 38vh;
+    right: 0vw;
+  }
+}

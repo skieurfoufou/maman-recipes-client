@@ -1,11 +1,14 @@
 import axios from "axios";
 import env from "../config/env";
 
-export const getAllRecipes = async ({ subCategory, name }) => {
+export const getAllRecipes = async ({ subCategory, q }) => {
   try {
     const parameters = [];
     if (subCategory) {
       parameters.push(`subCategory=${subCategory}`);
+    }
+    if (q) {
+      parameters.push(`q=${q}`);
     }
 
     const url = `${env.SERVER_URL}/recipes${
@@ -32,11 +35,12 @@ export const getOneRecipe = async (id) => {
   }
 };
 
-export const updateRecipe = async () => {
+export const updateRecipe = async (id, recipe, token) => {
   try {
-    const url = `${env.SERVER_URL}/recipes`;
+    const url = `${env.SERVER_URL}/recipes/${id}`;
     console.log(url);
-    const res = await axios.put(url);
+    const headers = createHeaders({ token });
+    const res = await axios.put(url, recipe, { headers });
     return res.data;
   } catch (err) {
     console.error(err);
@@ -47,14 +51,29 @@ export const updateRecipe = async () => {
 export const createRecipe = async (newRecipe, token) => {
   try {
     const url = `${env.SERVER_URL}/recipes`;
-    const res = await axios.post(url, newRecipe, {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
+    const headers = createHeaders({ token });
+    const res = await axios.post(url, newRecipe, { headers });
     return res.data;
   } catch (err) {
     console.error(err);
     throw new Error(err.message);
   }
+};
+
+export const deleteRecipe = async (id, token) => {
+  try {
+    const url = `${env.SERVER_URL}/recipes/${id}`;
+    const headers = createHeaders({ token });
+    const res = await axios.delete(url, { headers });
+    return res.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+const createHeaders = ({ token }) => {
+  return {
+    Authorization: "Bearer " + token,
+  };
 };

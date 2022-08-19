@@ -18,3 +18,9 @@
   fill: var(--secondary-color);
   padding-right: 10px;
 }
+
+@media (max-width: 600px) {
+  .preparation {
+    width: 90vw;
+  }
+}

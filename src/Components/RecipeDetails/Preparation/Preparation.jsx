@@ -15,7 +15,7 @@ function Preparation({ preparation }) {
         alt="preparation"
         className={classes.logo_cooking}
       />
-      <ul>
+      <ul className={classes.ulContainer}>
         {preparationArr.map((preparation, index) => {
           return <li key={index}>{preparation} </li>;
         })}

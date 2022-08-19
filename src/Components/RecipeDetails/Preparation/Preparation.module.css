@@ -5,7 +5,7 @@
   border-radius: 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-weight: bolder;
   font-size: large;
   color: var(--font-color-2);
@@ -17,6 +17,11 @@
   pointer-events: none;
   fill: var(--secondary-color);
   padding-right: 10px;
+}
+.ulContainer {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 @media (max-width: 600px) {

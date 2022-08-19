@@ -1,11 +1,12 @@
 .container {
   background-color: var(--primary-color);
-  height: 105vh;
+  min-height: 105vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   font-size: xx-large;
+  position: relative;
 }
 .container2 {
   border-radius: 15px;
@@ -62,9 +63,13 @@
 
 @media (max-width: 1000px) {
   .container {
-    height: 260vh;
+    min-height: 240vh;
     font-size: x-large;
   }
+  .container2 {
+    /* min-height: 250vh; */
+  }
+
   .title {
     flex-direction: column;
     gap: 5px;
@@ -90,21 +95,10 @@
   align-items: center;
   padding: 5px;
 }
-/* .comments {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-content: stretch; 
-  width: 100%;
-  gap: 20px;
-  align-items: center;
-  padding: 5px;
-} */
 
 .submit {
   border-radius: 15px;
   height: 6.5vh;
-  /* width: 7.5vw; */
   flex-grow: 2;
   padding: 10px;
   font-size: large;

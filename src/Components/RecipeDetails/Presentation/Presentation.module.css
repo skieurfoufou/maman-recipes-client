@@ -19,3 +19,9 @@
   fill: var(--secondary-color);
   padding-right: 10px;
 }
+
+@media (max-width: 600px) {
+  .cooking {
+    width: 90vw;
+  }
+}

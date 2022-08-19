@@ -47,7 +47,7 @@ function RecipeDetails({ recipe }) {
         {isLoggedIn && (
           <div className={classes.buttons}>
             <button className={classes.button} onClick={handleEdit}>
-              edit
+              editer
             </button>
 
             {/* <div className={classes.button} onClick={handleDelete}>

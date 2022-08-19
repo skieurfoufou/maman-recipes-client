@@ -12,7 +12,7 @@
 @media (max-width: 1000px) {
   .time {
     flex-direction: column;
-    min-height: 25vh;
+    min-height: 32vh;
     width: 40vw;
   }
 }

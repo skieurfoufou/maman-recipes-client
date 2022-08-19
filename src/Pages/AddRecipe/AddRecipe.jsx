@@ -165,6 +165,9 @@ function AddRecipe() {
           <div className={classes.container2}>
             <div className={classes.title}>
               <label className={classes.label}>Notes</label>
+              <div>
+                <div className={classes.para}>{errors.grades?.message}</div>
+              </div>
               <input
                 className={classes.input}
                 placeholder="notes de 1 a 5"
@@ -191,9 +194,7 @@ function AddRecipe() {
               />
             </div>
           </div>
-          <div>
-            <div className={classes.para}>{errors.grades?.message}</div>
-          </div>
+
           <button type="submit" className={classes.submit}>
             Soumettre
           </button>

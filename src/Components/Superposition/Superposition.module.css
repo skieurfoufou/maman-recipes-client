@@ -100,5 +100,6 @@
   }
   .title {
     width: 10vw;
+    font-size: large;
   }
 }

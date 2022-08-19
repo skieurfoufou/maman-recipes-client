@@ -10,6 +10,19 @@
   flex-direction: column;
   border-radius: 15px;
 }
+.container::-webkit-scrollbar {
+  width: 0.25em;
+}
+
+.container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+}
+.container::-webkit-scrollbar-thumb {
+  background-color: var(--fifth-color);
+  outline: 2px solid var(--third-color);
+  border-radius: 15px;
+}
 
 .header {
   border-bottom: 3px solid black;
@@ -21,7 +34,7 @@
 }
 
 .link {
-  color: var(--secondary-color);
+  color: var(--font-color-1);
 }
 
 .link:hover {
@@ -31,6 +44,7 @@
 .buttonIcon {
   width: 40px;
   height: 40px;
+  padding-left: 15px;
 }
 
 .results {
@@ -45,5 +59,10 @@
     width: 100vw;
     top: 38vh;
     right: 0vw;
+  }
+  .buttonIcon {
+    width: 25px;
+    height: 25px;
+    padding-left: 25px;
   }
 }

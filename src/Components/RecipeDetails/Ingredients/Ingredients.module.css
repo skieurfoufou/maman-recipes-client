@@ -11,13 +11,14 @@
   color: var(--font-color-2);
   padding: 10px;
   margin: 10px;
-  list-style-type: none;
 }
 .ulContainer {
   display: flex;
   justify-content: flex-start;
+  align-items: flex-start;
   flex-direction: column;
   list-style-type: none;
+  padding-left: 0;
 }
 
 .logo_cooking {

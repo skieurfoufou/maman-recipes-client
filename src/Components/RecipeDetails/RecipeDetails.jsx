@@ -9,6 +9,7 @@ import { deleteRecipe } from "../../Apis/recipes.api";
 import { useNavigate } from "react-router-dom";
 import ConfirmButton from "../ConfirmButton/ConfirmButton";
 import Cooking from "./Cooking/Cooking";
+import Presentation1 from "./Presentation1/Presentation1";
 
 function RecipeDetails({ recipe }) {
   const { isLoggedIn, token } = useContext(AuthContext);
@@ -45,6 +46,7 @@ function RecipeDetails({ recipe }) {
         <Ingredients ingredients={recipe.ingredients} />
         <Preparation preparation={recipe.preparation} />
         <Cooking cooking={recipe.cooking} />
+        {/* <Presentation1 recipe={recipe} /> */}
         <Presentation recipe={recipe} />
         {isLoggedIn && (
           <div className={classes.buttons}>

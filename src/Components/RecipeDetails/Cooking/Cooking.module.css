@@ -14,8 +14,10 @@
 .ulContainer {
   display: flex;
   justify-content: flex-start;
+  align-items: flex-start;
   flex-direction: column;
   list-style-type: none;
+  padding-left: 0;
 }
 
 .logo_cooking {

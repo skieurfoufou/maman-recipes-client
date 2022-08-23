@@ -15,7 +15,7 @@ function Ingredients({ ingredients }) {
         alt="ingredients"
         className={classes.logo_cooking}
       />
-      <ul>
+      <ul className={classes.ulContainer}>
         {ingredientsArr.map((ingredient, index) => {
           return <li key={index}>{ingredient} </li>;
         })}

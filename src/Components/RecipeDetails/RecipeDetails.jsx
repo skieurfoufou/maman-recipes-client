@@ -3,11 +3,12 @@ import Ingredients from "./Ingredients/Ingredients";
 import Preparation from "./Preparation/Preparation";
 import TimeDisplay from "./TimeDisplay/TimeDisplay";
 import Presentation from "./Presentation/Presentation";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { deleteRecipe } from "../../Apis/recipes.api";
 import { useNavigate } from "react-router-dom";
 import ConfirmButton from "../ConfirmButton/ConfirmButton";
+import Cooking from "./Cooking/Cooking";
 
 function RecipeDetails({ recipe }) {
   const { isLoggedIn, token } = useContext(AuthContext);
@@ -43,6 +44,7 @@ function RecipeDetails({ recipe }) {
         />
         <Ingredients ingredients={recipe.ingredients} />
         <Preparation preparation={recipe.preparation} />
+        <Cooking cooking={recipe.cooking} />
         <Presentation recipe={recipe} />
         {isLoggedIn && (
           <div className={classes.buttons}>

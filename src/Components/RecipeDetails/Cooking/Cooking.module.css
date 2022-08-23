@@ -1,4 +1,4 @@
-.ingredients {
+.preparation {
   min-height: 4.5vh;
   width: 40vw;
   border: 2px solid var(--fifth-color);
@@ -10,8 +10,6 @@
   font-size: large;
   color: var(--font-color-2);
   padding: 10px;
-  margin: 10px;
-  list-style-type: none;
 }
 .ulContainer {
   display: flex;
@@ -26,9 +24,14 @@
   fill: var(--secondary-color);
   padding-right: 10px;
 }
+.ulContainer {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
 
 @media (max-width: 600px) {
-  .ingredients {
+  .preparation {
     width: 90vw;
   }
 }

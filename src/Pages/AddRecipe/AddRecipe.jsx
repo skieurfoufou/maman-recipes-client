@@ -121,6 +121,7 @@ function AddRecipe() {
                 register={register}
                 name="Ingredients"
                 input="ingredients"
+                placeholder="mettre une virgule pour aller a la ligne"
                 cssStyle="wide"
                 defaultValue={recipe.ingredients}
               />
@@ -128,6 +129,7 @@ function AddRecipe() {
                 register={register}
                 name="Preparation"
                 input="preparation"
+                placeholder="mettre une virgule pour aller a la ligne"
                 cssStyle="wide"
                 defaultValue={recipe.preparation}
               />
@@ -137,6 +139,7 @@ function AddRecipe() {
                 register={register}
                 name="Cuisson"
                 input="cooking"
+                placeholder="mettre une virgule pour aller a la ligne"
                 cssStyle="wide"
                 defaultValue={recipe.cooking}
               />

@@ -3,17 +3,23 @@ import Ingredients from "./Ingredients/Ingredients";
 import Preparation from "./Preparation/Preparation";
 import TimeDisplay from "./TimeDisplay/TimeDisplay";
 import Presentation from "./Presentation/Presentation";
-import { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { deleteRecipe } from "../../Apis/recipes.api";
 import { useNavigate } from "react-router-dom";
 import ConfirmButton from "../ConfirmButton/ConfirmButton";
 import Cooking from "./Cooking/Cooking";
 import Presentation1 from "./Presentation1/Presentation1";
+import { useReactToPrint } from "react-to-print";
 
 function RecipeDetails({ recipe }) {
   const { isLoggedIn, token } = useContext(AuthContext);
   const navigate = useNavigate();
+  const componentRef = useRef();
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   const handleEdit = async () => {
     const recipeId = recipe._id;
@@ -34,9 +40,14 @@ function RecipeDetails({ recipe }) {
   };
 
   return (
-    <div className={classes.container}>
+    <div className={classes.container} ref={componentRef}>
       <div className={classes.subContainer}>
         <h1 className={classes.title}>{recipe.title}</h1>
+        <div>
+          <button className={classes.btnPdf} onClick={handlePrint}>
+            Editer PDF
+          </button>
+        </div>
         <TimeDisplay
           preparationTime={recipe.preparationTime}
           cookingTime={recipe.cookingTime}

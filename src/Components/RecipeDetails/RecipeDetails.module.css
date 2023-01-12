@@ -12,11 +12,32 @@
   justify-content: space-around;
 }
 .imgContainer {
-  width: 50%;
 }
+
+.imgContainer img {
+  width: 20rem;
+}
+
 .title {
   text-decoration-line: underline;
   color: var(--fifth-color);
+}
+.btnPdf {
+  margin-top: 1rem;
+  min-height: 4.5vh;
+  min-width: 7vw;
+  border: 2px solid var(--fifth-color);
+  border-radius: 20px;
+  font-weight: bolder;
+  font-size: large;
+  color: var(--font-color-2);
+  cursor: pointer;
+  background-color: var(--fourth-color);
+}
+
+.btnPdf:hover {
+  color: var(--font-color-1);
+  background-color: var(--fifth-color);
 }
 
 .timeDetail {
